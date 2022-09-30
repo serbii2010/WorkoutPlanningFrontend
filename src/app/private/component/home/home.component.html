@@ -1,0 +1,12 @@
+<div *ngIf="authStorageService.getUsername() ; else loggedOut">
+  <h2 class="text-primary">Hello! Welcome to Home Page!</h2>
+  <p>
+    <strong>Username: </strong> {{ info.username }} <br/>
+    <strong>Role:</strong> {{ info.role }} <br/>
+  </p>
+</div>
+
+<ng-template #loggedOut>
+  {{ info?.role }}
+  Please login.
+</ng-template>

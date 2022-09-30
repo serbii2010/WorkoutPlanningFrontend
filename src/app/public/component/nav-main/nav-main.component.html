@@ -1,0 +1,32 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+  <div class="container container-fluid">
+    <a class="navbar-brand" href="#">Workout Planning</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" routerLinkActive="active">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li *ngIf="'USER'===role" class="nav-item">
+          <a class="nav-link" routerLink="user">User Board</a>
+        </li>
+        <li *ngIf="'TRAINER'===authStorageService.getRole()" class="nav-item">
+          <a class="nav-link" routerLink="trainer">Trainer Board</a>
+        </li>
+        <li *ngIf="'ADMIN'===authStorageService.getRole()" class="nav-item">
+          <a class="nav-link" routerLink="admin" routerLinkActive="active">Admin Board</a>
+        </li>
+      </ul>
+      <span *ngIf="!isAuth()" class="navbar-text">
+        <a class="nav-link" routerLink="/auth/login">Login</a>
+      </span>
+      <span *ngIf="isAuth()" class="navbar-text">
+        <a class="nav-link" routerLink="/" (click)="authStorageService.signOut()">Logout
+          ({{ authStorageService.getUsername() }})</a>
+      </span>
+    </div>
+  </div>
+</nav>
