@@ -6,7 +6,8 @@ export class SignUpInfo {
   email: string;
   phone: string;
 
-  constructor(username: string, firstName: string, lastName: string, password: string, email: string, phone: string) {
+  constructor(username: string, firstName: string, lastName: string, password: string, email: string, phone: string)
+  {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -14,6 +15,4 @@ export class SignUpInfo {
     this.email = email;
     this.phone = phone;
   }
-
-
 }

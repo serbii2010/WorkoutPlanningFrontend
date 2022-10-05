@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
@@ -49,7 +50,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('init login component')
     if (this.authStorage.getRole()) {
       this.isLoggedIn = true;
       this.role = this.authStorage.getRole();

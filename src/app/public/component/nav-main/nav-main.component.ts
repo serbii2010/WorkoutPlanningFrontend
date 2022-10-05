@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthStorageService} from "../../../core/auth/auth-storage.service";
 
 @Component({
