@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CoreModule} from "./core/core.module";
 import {NavMainComponent} from "./public/component/nav-main/nav-main.component";
@@ -17,6 +17,10 @@ import {NavMainComponent} from "./public/component/nav-main/nav-main.component";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'jwt-token',
+      headerName: 'jwt-token'
+    }),
     NgbModule,
     CoreModule,
   ],

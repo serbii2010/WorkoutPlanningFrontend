@@ -1,19 +1,17 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./component/login/login.component";
-import {RegisterComponent} from "./component/register/register.component";
+import {RegisterUserComponent} from "./component/register/register.component";
 import {PublicComponent} from "./public.component";
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // outlet: 'main'
   },
   {
     path: 'signup',
-    component: RegisterComponent,
-    // outlet: 'public'
+    component: RegisterUserComponent,
   },
   {
     path: '',
