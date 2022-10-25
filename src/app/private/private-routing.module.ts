@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./component/home/home.component";
-import {ClientComponent} from "./component/client/client.component";
-import {TrainerComponent} from "./component/trainer/trainer.component";
+import {HomeComponent} from "../public/component/home/home.component";
 import {AdminComponent} from "./admin/admin.component";
+import {TrainerComponent} from "./trainer/trainer.component";
+import {ClientComponent} from "./client/client.component";
 
 const routes: Routes = [
   {
@@ -12,16 +12,18 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m=>m.AdminModule)
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'trainer',
+    component: TrainerComponent,
+    loadChildren: () => import('./trainer/trainer.module').then(m=>m.TrainerModule)
   },
   {
     path: 'client',
     component: ClientComponent,
+    loadChildren: () => import('./client/client.module').then(m=>m.ClientModule)
   },
   {
-    path: 'trainer',
-    component: TrainerComponent,
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: '',

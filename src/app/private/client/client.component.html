@@ -1,13 +1,12 @@
-<div *ngIf="role==='ADMIN'">
+<div *ngIf="role==='CLIENT'">
   <div class="container">
     <div class="row justify-content-start">
       <div class="col-3">
-        <app-nav-admin></app-nav-admin>
+        <app-nav-client></app-nav-client>
       </div>
       <div class="col-9">
         <router-outlet></router-outlet>
       </div>
-
     </div>
   </div>
 </div>
