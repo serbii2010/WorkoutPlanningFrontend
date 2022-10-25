@@ -1,0 +1,114 @@
+<div class="row col-sm-6" xmlns="http://www.w3.org/1999/html">
+  <h2>Form Generation Workouts</h2>
+  <form [formGroup]="form" (ngSubmit)="generate()">
+    <div class="mb-3">
+      <label class="form-label">Date start:</label>
+      <input type="date"
+             class="form-control"
+             name="dateStart"
+             formControlName="dateStart"
+             required
+      />
+    </div>
+    <div *ngIf="dateStart.invalid && dateStart.touched" class="alert alert-danger">
+      <div *ngIf="dateStart.errors?.required">Date start is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Date end:</label>
+      <input type="date"
+             class="form-control"
+             name="dateEnd"
+             formControlName="dateEnd"
+             required
+      />
+    </div>
+    <div *ngIf="dateEnd.invalid && dateEnd.touched" class="alert alert-danger">
+      <div *ngIf="dateEnd.errors?.required">Date end is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Repeated:</label>
+      <select formControlName="repeated"
+              class="form-select"
+              (change)="setCheckModel()"
+              [(ngModel)]="repeated"
+              required>
+        <option value="week">Weekly</option>
+        <option value="month">Monthly</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <checkbox-group [options]="groupCheckBox" (toggle)="onCheckboxChange($event)"></checkbox-group>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Time start:</label>
+      <input type="time"
+             class="form-control"
+             name="timeStart"
+             formControlName="timeStart"
+             required
+      />
+    </div>
+    <div *ngIf="timeStart.invalid && timeStart.touched" class="alert alert-danger">
+      <div *ngIf="timeStart.errors?.required">Time start is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Trainer:</label>
+      <select class="form-select"
+              name="trainer"
+              formControlName="trainer"
+              required>
+        <option *ngFor="let trainer of trainers" value="{{trainer.username}}">{{trainer.username}}</option>
+      </select>
+    </div>
+    <div *ngIf="trainer.invalid && trainer.touched" class="alert alert-danger">
+      <div *ngIf="trainer.errors?.required">Trainer is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Type:</label>
+      <input type="text"
+             class="form-control"
+             name="type"
+             formControlName="type"
+             required
+      />
+    </div>
+    <div *ngIf="type.invalid && type.touched" class="alert alert-danger">
+      <div *ngIf="type.errors?.required">Type workout is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Duration (Minutes):</label>
+      <input type="number"
+             class="form-control"
+             name="duration"
+             formControlName="duration"
+             required
+      />
+    </div>
+    <div *ngIf="duration.invalid && duration.touched" class="alert alert-danger">
+      <div *ngIf="duration.errors?.required">Duration is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Total seats:</label>
+      <input type="number"
+             class="form-control"
+             name="totalSeats"
+             formControlName="totalSeats"
+             required
+      />
+    </div>
+    <div *ngIf="totalSeats.invalid && totalSeats.touched" class="alert alert-danger">
+      <div *ngIf="totalSeats.errors?.required">Total Seats is required</div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-success" type="submit">Generate</button>
+      <div *ngIf="isFailed" class="alert alert-danger">
+        Generate workout failed:
+        <ul>
+          <li *ngFor="let error of errorMessage$|async">{{error}}</li>
+        </ul>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AuthStorageService} from "../../core/auth/auth-storage.service";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
+  selector: 'app-client',
+  templateUrl: './client.component.html'
 })
-export class AdminComponent implements OnInit {
+export class ClientComponent implements OnInit {
   role: String | null
 
   constructor(private authStorageService: AuthStorageService) {

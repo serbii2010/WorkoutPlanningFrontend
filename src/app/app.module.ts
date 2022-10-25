@@ -7,11 +7,13 @@ import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CoreModule} from "./core/core.module";
 import {NavMainComponent} from "./public/component/nav-main/nav-main.component";
+import {HomeComponent} from "./public/component/home/home.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMainComponent
+    NavMainComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

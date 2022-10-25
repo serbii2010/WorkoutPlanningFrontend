@@ -10,8 +10,8 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="home">Home</a>
         </li>
-        <li *ngIf="'USER'===role" class="nav-item">
-          <a class="nav-link" routerLink="user">User Board</a>
+        <li *ngIf="'CLIENT'===authStorageService.getRole()" class="nav-item">
+          <a class="nav-link" routerLink="client">Client Board</a>
         </li>
         <li *ngIf="'TRAINER'===authStorageService.getRole()" class="nav-item">
           <a class="nav-link" routerLink="trainer">Trainer Board</a>
