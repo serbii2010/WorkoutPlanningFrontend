@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-auto">
+      <label class="form-label">Hour before workout:</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="hour"
+        placeholder="hour"
+        required
+      />
+    </div>
+  </div>
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-auto">
+      <label class="form-label">Time before morning workout ("HH:mm" format):</label>
+      <input
+        type="time"
+        class="form-control"
+        formControlName="time"
+        placeholder="time"
+        required
+      />
+    </div>
+  </div>
+  <div class="col-auto mb-3">
+    <button class="btn btn-success">Save</button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+export enum StatusRecord {
+  UNDEFINED = "UNDEFINED",
+  ACTIVE = "ACTIVE",
+  QUEUED = "QUEUED",
+  CANCELLED = "CANCELLED",
+  SKIPPED = "SKIPPED",
+  ACCEPTED = "ACCEPTED",
+}

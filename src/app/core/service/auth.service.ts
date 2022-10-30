@@ -22,6 +22,7 @@ const httpOptions = {
 })
 export class AuthService {
   private loginUrl = 'http://localhost:8000/api/auth/login';
+  private logoutUrl = 'http://localhost:8000/api/auth/logout';
   private signupClientUrl = 'http://localhost:8000/api/client-accounts';
   private signupTrainerUrl = 'http://localhost:8000/api/trainer-accounts';
 
@@ -41,5 +42,9 @@ export class AuthService {
       default:
         return this.http.post<string>(this.signupClientUrl, info, httpOptions);
     }
+  }
+
+  logout() {
+    this.http.get(this.logoutUrl, httpOptions).subscribe();
   }
 }

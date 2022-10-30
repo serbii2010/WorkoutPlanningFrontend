@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import {TrainerRoutingModule} from "./trainer-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
+import { DetailWorkoutComponent } from './component/workouts/detail-workout/detail-workout.component';
 
 
 
@@ -14,7 +15,8 @@ import {MatTableModule} from "@angular/material/table";
   declarations: [
     TrainerComponent,
     NavTrainerComponent,
-    WorkoutTrainerTableComponent
+    WorkoutTrainerTableComponent,
+    DetailWorkoutComponent
   ],
   imports: [
     CommonModule,

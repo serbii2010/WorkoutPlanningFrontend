@@ -1,6 +1,10 @@
 import {Component, Inject, Injectable, LOCALE_ID, OnInit} from '@angular/core';
 import {WorkoutTableComponent} from "../../../../component/workout-table/workout-table.component";
 import {WorkoutService} from "../../../../../core/service/workout.service";
+import {RecordService} from "../../../../../core/service/record.service";
+import {InsertRecordInfo} from "../../../../../core/record/insert-record-info";
+import {AuthStorageService} from "../../../../../core/auth/auth-storage.service";
+import {StatusRecord} from "../../../../../core/record/status-record";
 
 @Component({
   selector: 'app-workouts',
@@ -9,9 +13,67 @@ import {WorkoutService} from "../../../../../core/service/workout.service";
 @Injectable()
 export class WorkoutClientTableComponent extends WorkoutTableComponent implements OnInit {
   constructor(public override workoutService: WorkoutService,
+              public recordService: RecordService,
+              public authService: AuthStorageService,
               @Inject(LOCALE_ID) public override locale: string) {
     super(workoutService, locale);
     this.displayedColumns = ['date', 'timeStart', 'trainer', 'duration', 'typeWorkout', 'availableSeats', 'actions'];
     this.getWorkouts();
+  }
+
+  statusRecord = StatusRecord;
+
+  singUp(id: number) {
+    if (this.authService.getUsername() == null) {
+      alert("Error. Not auth")
+      return
+    }
+    let request = new InsertRecordInfo(this.authService.getUsername()!, id)
+    this.recordService.insert(request).subscribe({
+      next: value => {
+        console.log(value)
+        this.getWorkouts()
+      },
+      error: error => {
+        console.error(error.error.errors[0].message)
+        alert(error.error.errors[0].message)
+      }
+    })
+  }
+
+  queue(id: number) {
+    if (this.authService.getUsername() == null) {
+      alert("Error. Not auth")
+      return
+    }
+    let request = new InsertRecordInfo(this.authService.getUsername()!, id)
+    this.recordService.queue(request).subscribe({
+      next: value => {
+        console.log(value)
+        this.getWorkouts()
+      },
+      error: error => {
+        console.error(error.error.errors[0].message)
+        alert(error.error.errors[0].message)
+      }
+    })
+  }
+
+  cancel(id: number) {
+    if (this.authService.getUsername() == null) {
+      alert("Error. Not auth")
+      return
+    }
+    let request = new InsertRecordInfo(this.authService.getUsername()!, id)
+    this.recordService.setStatus(request, StatusRecord.CANCELLED).subscribe({
+      next: value => {
+        console.log(value)
+        this.getWorkouts()
+      },
+      error: error => {
+        console.error(error.error.errors[0].message)
+        alert(error.error.errors[0].message)
+      }
+    })
   }
 }
