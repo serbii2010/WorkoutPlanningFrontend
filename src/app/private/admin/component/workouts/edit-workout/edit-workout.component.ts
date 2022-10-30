@@ -106,7 +106,7 @@ export class EditWorkoutComponent implements OnInit {
       this.duration.value,
       this.typeWorkout.value,
       this.totalSeats.value,
-      this.availableSeats.value,
+      this.availableSeats.value
     )
     this.workoutService.update(this.idWorkout, this.workout).subscribe({
       next: () => {

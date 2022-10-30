@@ -15,7 +15,9 @@ import {GenerateWorkoutsComponent} from './component/workouts/generate-workouts/
 import {SharedModule} from "../../shared/shared.module";
 import {CheckboxGroupComponent} from "../../shared/component/multi-check-box/checkbox-group.component";
 import {EditWorkoutComponent} from './component/workouts/edit-workout/edit-workout.component';
-import {WorkoutAdminTableComponent} from "./component/trainers/workout-table/workout-table.component";
+import {WorkoutAdminTableComponent} from "./component/workouts/workout-table/workout-table.component";
+import {DetailWorkoutComponent} from "./component/workouts/detail-workout/detail-workout.component";
+import { RulesComponent } from './component/rules/rules.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import {WorkoutAdminTableComponent} from "./component/trainers/workout-table/wor
     WorkoutAdminTableComponent,
     GenerateWorkoutsComponent,
     CheckboxGroupComponent,
-    EditWorkoutComponent
+    EditWorkoutComponent,
+    DetailWorkoutComponent,
+    RulesComponent
   ],
   imports: [
     CommonModule,

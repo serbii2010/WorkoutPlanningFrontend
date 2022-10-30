@@ -14,6 +14,4 @@ export class WorkoutAdminTableComponent extends WorkoutTableComponent implements
     this.displayedColumns = ['id', 'date', 'timeStart', 'trainer', 'duration', 'typeWorkout', 'totalSeats', 'availableSeats', 'actions'];
     this.getWorkouts();
   }
-
-
 }

@@ -5,7 +5,9 @@ import {RegisterTrainerComponent} from "./component/trainers/register-trainer/re
 import {EditTrainerComponent} from "./component/trainers/edit-trainer/edit-trainer.component";
 import {GenerateWorkoutsComponent} from "./component/workouts/generate-workouts/generate-workouts.component";
 import {EditWorkoutComponent} from "./component/workouts/edit-workout/edit-workout.component";
-import {WorkoutAdminTableComponent} from "./component/trainers/workout-table/workout-table.component";
+import {WorkoutAdminTableComponent} from "./component/workouts/workout-table/workout-table.component";
+import {DetailWorkoutComponent} from "./component/workouts/detail-workout/detail-workout.component";
+import {RulesComponent} from "./component/rules/rules.component";
 
 const routes: Routes = [
   {
@@ -13,7 +15,7 @@ const routes: Routes = [
     component: TrainerTableComponent,
   },
   {
-    path: 'trainers/edit/:id',
+    path: 'trainers/:id/edit',
     component: EditTrainerComponent,
   },
   {
@@ -29,8 +31,16 @@ const routes: Routes = [
     component: GenerateWorkoutsComponent,
   },
   {
-    path: 'workouts/edit/:id',
+    path: 'workouts/:id/edit',
     component: EditWorkoutComponent,
+  },
+  {
+    path: 'workouts/:id/detail',
+    component: DetailWorkoutComponent,
+  },
+  {
+    path: 'rules',
+    component: RulesComponent,
   },
   {
     path: '',
