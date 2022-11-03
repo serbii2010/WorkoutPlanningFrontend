@@ -6,7 +6,8 @@ import {AuthLoginInfo} from '../../../core/auth/login-info';
 
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {BehaviorSubject, Observable} from "rxjs";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {LoginResponse} from "../../../core/auth/login-response";
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
   role: string | null = null;
   private loginInfo: AuthLoginInfo | null = null;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private authStorage: AuthStorageService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   public formLogin: FormGroup = new FormGroup({
@@ -54,6 +56,20 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.role = this.authStorage.getRole();
     }
+    if (this.route.snapshot.queryParamMap.get('token') != null) {
+      this.authService.getCurrentRole().subscribe({
+        next: value => {
+          this.role = value.name
+          let login = new LoginResponse(this.route.snapshot.queryParamMap.get('token')!, '', '', '', '', this.role)
+          this.auth(login)
+        },
+        error: err => {
+          console.error(err)
+          // alert(err)
+        }
+      })
+
+    }
   }
 
   submit() {
@@ -69,13 +85,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe({
       next: (data) => {
-        this.authStorage.saveUsername(data.username);
-        this.authStorage.saveRole(data.role);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.role = this.authStorage.getRole();
-        this.router.navigate(['']);
+        this.auth(data)
       },
       error: (error) => {
         this.setErrorMessage(error.error.errors[0].message)
@@ -83,4 +93,15 @@ export class LoginComponent implements OnInit {
       }
     })
   };
+
+  private auth(loginResponse: LoginResponse): void {
+    this.authStorage.saveUsername(loginResponse.username);
+    this.authStorage.saveRole(loginResponse.role);
+
+    this.isLoginFailed = false;
+    this.isLoggedIn = true;
+    this.role = this.authStorage.getRole();
+    console.log('navigate')
+    this.router.navigate(['']);
+  }
 }
