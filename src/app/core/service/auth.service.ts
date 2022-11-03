@@ -1,50 +1,49 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {LoginResponse} from '../auth/login-response';
 import {AuthLoginInfo} from '../auth/login-info';
 import {SignUpInfo} from '../auth/signup-info';
 import {Role} from '../account/role'
-
-const httpOptions = {
-  headers: new HttpHeaders(
-    {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:8000',
-      'Access-Control-Allow-Credentials': 'true'
-    }),
-  withCredentials: true
-};
+import {RoleInfo} from "../auth/role-info";
+import {BaseService} from "./base.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:8000/api/auth/login';
-  private logoutUrl = 'http://localhost:8000/api/auth/logout';
-  private signupClientUrl = 'http://localhost:8000/api/client-accounts';
-  private signupTrainerUrl = 'http://localhost:8000/api/trainer-accounts';
+  private loginUrl = this.baseService.baseUrl+'auth/login';
+  private logoutUrl = this.baseService.baseUrl+'auth/logout';
+  private signupClientUrl = this.baseService.baseUrl+'client-accounts';
+  private signupTrainerUrl = this.baseService.baseUrl+'trainer-accounts';
+  private getRoleUrl = this.baseService.baseUrl+'auth/role';
+  public loginWithGoogleUrl = 'http://localhost:8000/oauth2/authorization/google?redirect_uri=http://localhost:4200/auth/login';
 
-  constructor(private http: HttpClient) {
+  constructor(private baseService: BaseService,
+              private http: HttpClient) {
   }
 
   attemptAuth(body: AuthLoginInfo): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.loginUrl, body, httpOptions);
+    return this.http.post<LoginResponse>(this.loginUrl, body, this.baseService.httpOptions);
   }
 
   signUp(info: SignUpInfo, typeUser: Role): Observable<string> {
     switch (typeUser) {
       case Role.CLIENT:
-        return this.http.post<string>(this.signupClientUrl, info, httpOptions);
+        return this.http.post<string>(this.signupClientUrl, info, this.baseService.httpOptions);
       case Role.TRAINER:
-        return this.http.post<string>(this.signupTrainerUrl, info, httpOptions);
+        return this.http.post<string>(this.signupTrainerUrl, info, this.baseService.httpOptions);
       default:
-        return this.http.post<string>(this.signupClientUrl, info, httpOptions);
+        return this.http.post<string>(this.signupClientUrl, info, this.baseService.httpOptions);
     }
   }
 
   logout() {
-    this.http.get(this.logoutUrl, httpOptions).subscribe();
+    this.http.get(this.logoutUrl, this.baseService.httpOptions).subscribe();
+  }
+
+  getCurrentRole(): Observable<RoleInfo> {
+    return this.http.get<RoleInfo>(this.getRoleUrl, this.baseService.httpOptions)
   }
 }
