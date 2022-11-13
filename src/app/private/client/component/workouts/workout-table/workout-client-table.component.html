@@ -60,7 +60,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions</th>
     <td mat-cell *matCellDef="let element">
-      <div *ngIf="element.statusRecord===statusRecord.UNDEFINED && element.availableSeats>0">
+      <div *ngIf="element.recordStatus===recordStatus.UNDEFINED && element.availableSeats>0">
         <button (click)="singUp(element.id)" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Sing Up">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-plus" viewBox="0 0 16 16">
@@ -70,7 +70,7 @@
           </svg>
         </button>
       </div>
-      <div *ngIf="element.statusRecord===statusRecord.UNDEFINED && element.availableSeats==0">
+      <div *ngIf="element.recordStatus===recordStatus.UNDEFINED && element.availableSeats==0">
         <button (click)="queue(element.id)" class="btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Queue">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-data" viewBox="0 0 16 16">
@@ -80,7 +80,7 @@
           </svg>
         </button>
       </div>
-      <div *ngIf="element.statusRecord===statusRecord.ACTIVE || element.statusRecord===statusRecord.QUEUED">
+      <div *ngIf="element.recordStatus===recordStatus.ACTIVE || element.recordStatus===recordStatus.QUEUED">
         <button (click)="cancel(element.id)" class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Cancel">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sign-stop" viewBox="0 0 16 16">

@@ -9,7 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../../../../core/service/account.service";
 import {AccountInfo} from "../../../../../core/account/account-info";
 import {Role} from "../../../../../core/account/role";
-import {StatusRecord} from "../../../../../core/record/status-record";
+import {RecordStatus} from "../../../../../core/record/record-status";
 
 @Component({
   selector: 'app-client-table',
@@ -25,7 +25,7 @@ export class DetailWorkoutComponent implements OnInit {
   currentTime: Date = new Date()
   displayedColumns = ['id', 'username', 'firstName', 'lastName', 'status', 'actions'];
 
-  status = StatusRecord
+  status = RecordStatus
 
   formAddClient: FormGroup = new FormGroup({
     client: new FormControl<string>('', [Validators.required]),
@@ -58,7 +58,7 @@ export class DetailWorkoutComponent implements OnInit {
 
   deleteClient(username: string) {
     let request = new InsertRecordInfo(username, this.workoutId)
-    this.recordService.setStatus(request, StatusRecord.CANCELLED).subscribe({
+    this.recordService.setStatus(request, RecordStatus.CANCELLED).subscribe({
       next: () => {
         this.findRecords()
         this.findWorkout()
@@ -97,7 +97,7 @@ export class DetailWorkoutComponent implements OnInit {
 
   accept(username: string) {
     let request = new InsertRecordInfo(username, this.workoutId)
-    this.recordService.setStatus(request, StatusRecord.ACCEPTED).subscribe({
+    this.recordService.setStatus(request, RecordStatus.VISITED).subscribe({
       next: () => {
         this.findRecords()
         this.findWorkout()
@@ -110,7 +110,7 @@ export class DetailWorkoutComponent implements OnInit {
 
   skipped(username: string) {
     let request = new InsertRecordInfo(username, this.workoutId)
-    this.recordService.setStatus(request, StatusRecord.SKIPPED).subscribe({
+    this.recordService.setStatus(request, RecordStatus.SKIPPED).subscribe({
       next: () => {
         this.findRecords()
         this.findWorkout()

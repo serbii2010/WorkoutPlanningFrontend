@@ -1,5 +1,6 @@
 export class LoginResponse {
-  constructor(username: string, firstName: string, lastName: string, email: string, phone: string, role: string) {
+  constructor(userId: number, username: string, firstName: string, lastName: string, email: string, phone: string, role: string) {
+    this.id = userId;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -8,10 +9,11 @@ export class LoginResponse {
     this.role = role;
   }
 
+  id: number;
   username: string;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  role: string = 'user';
+  role: string = 'client';
 }

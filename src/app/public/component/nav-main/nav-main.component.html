@@ -20,13 +20,23 @@
           <a class="nav-link" routerLink="admin" routerLinkActive="active">Admin Board</a>
         </li>
       </ul>
-      <span *ngIf="!isAuth()" class="navbar-text">
-        <a class="nav-link" routerLink="/auth/login">Login</a>
-      </span>
-      <span *ngIf="isAuth()" class="navbar-text">
-        <a class="nav-link" routerLink="/" (click)="authStorageService.signOut()">Logout
-          ({{ authStorageService.getUsername() }})</a>
-      </span>
+
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0" routerLinkActive="active">
+        <li *ngIf="!isAuth()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/login">Login</a>
+        </li>
+        <li *ngIf="isAuth()"  class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">{{ authStorageService.getUsername() }}
+          </a>
+          <ul  class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="account">My Account</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" routerLink="/" (click)="authStorageService.signOut()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
     </div>
   </div>
 </nav>

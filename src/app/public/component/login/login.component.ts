@@ -60,12 +60,18 @@ export class LoginComponent implements OnInit {
       this.authService.getCurrentRole().subscribe({
         next: value => {
           this.role = value.name
-          let login = new LoginResponse(this.route.snapshot.queryParamMap.get('token')!, '', '', '', '', this.role)
+          let login = new LoginResponse(
+            Number(this.route.snapshot.queryParamMap.get('userId')),
+            this.route.snapshot.queryParamMap.get('token')!,
+            '',
+            '',
+            '',
+            '',
+            this.role)
           this.auth(login)
         },
         error: err => {
           console.error(err)
-          // alert(err)
         }
       })
 
@@ -85,6 +91,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe({
       next: (data) => {
+        console.log(data)
         this.auth(data)
       },
       error: (error) => {
@@ -95,6 +102,7 @@ export class LoginComponent implements OnInit {
   };
 
   private auth(loginResponse: LoginResponse): void {
+    this.authStorage.saveUserId(loginResponse.id.toString());
     this.authStorage.saveUsername(loginResponse.username);
     this.authStorage.saveRole(loginResponse.role);
 

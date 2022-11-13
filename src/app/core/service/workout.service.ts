@@ -14,7 +14,7 @@ export class WorkoutService {
 
   constructor(private baseService: BaseService, private http: HttpClient) { }
 
-  getWorkouts(dateStart: string | null = null, dateEnd: string | null = null): Observable<WorkoutInfo[]> {
+  getWorkouts(dateStart: string | null = null, dateEnd: string | null = null, recordStatus: string | null = null): Observable<WorkoutInfo[]> {
     let queryParams = new HttpParams();
     if (dateStart != null) {
       queryParams = queryParams.append('dateStart', dateStart);
@@ -23,8 +23,9 @@ export class WorkoutService {
       queryParams = queryParams.append('dateEnd', dateEnd);
     }
 
-    let options: any = this.baseService.httpOptions
-    options['params'] = queryParams
+    if (recordStatus != null) {
+      queryParams = queryParams.append('recordStatus', recordStatus)
+    }
 
     return this.http.get<WorkoutInfo[]>(this.baseWorkoutUrl, {
       params: queryParams,

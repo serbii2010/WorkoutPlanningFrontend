@@ -5,7 +5,7 @@ import {InsertRecordInfo} from "../record/insert-record-info";
 import {RecordInfo} from "../record/record-info";
 import {Rule} from "../record/rule";
 import {OptionInfo} from "../record/option-info";
-import {StatusRecord} from "../record/status-record";
+import {RecordStatus} from "../record/record-status";
 import {BaseService} from "./base.service";
 
 @Injectable({
@@ -25,7 +25,7 @@ export class RecordService {
     return this.http.post<RecordInfo>(this.baseUrl+'queue', requestBody, this.baseService.httpOptions);
   }
 
-  setStatus(requestBody: InsertRecordInfo, status: StatusRecord): Observable<RecordInfo> {
+  setStatus(requestBody: InsertRecordInfo, status: RecordStatus): Observable<RecordInfo> {
     return this.http.put<RecordInfo>(this.baseUrl+status.toString(), requestBody, this.baseService.httpOptions);
   }
 
@@ -34,11 +34,11 @@ export class RecordService {
   }
 
   getRule(rule: Rule): Observable<OptionInfo> {
-    return this.http.get<OptionInfo>(this.baseUrl+'rules/'+rule.toString(), this.baseService.httpOptions)
+    return this.http.get<OptionInfo>(this.baseService.baseUrl+'rules/'+rule.toString(), this.baseService.httpOptions)
   }
 
   setRule(rule: Rule, value: string) {
     let request = {value: value==""?null:value}
-    return this.http.post<OptionInfo>(this.baseUrl+'rules/'+rule.toString(), request, this.baseService.httpOptions)
+    return this.http.post<OptionInfo>(this.baseService.baseUrl+'rules/'+rule.toString(), request, this.baseService.httpOptions)
   }
 }

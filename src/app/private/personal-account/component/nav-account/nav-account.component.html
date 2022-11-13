@@ -1,0 +1,25 @@
+<div *ngIf="role !== null">
+  <nav class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="edit" routerLinkActive="active">
+          <i class="bi bi-person-bounding-box"></i> Personal Account</a>
+      </li>
+      <li *ngIf="role === 'CLIENT'" class="nav-item">
+        <a class="nav-link" routerLink="visited-workout" routerLinkActive="active">
+          <i class="bi bi-list-check"></i> Visited Workouts
+        </a>
+      </li>
+      <li *ngIf="role === 'CLIENT'" class="nav-item">
+        <a class="nav-link" routerLink="skipped-workout" routerLinkActive="active">
+          <i class="bi bi-list-task"></i> Skipped Workouts
+        </a>
+      </li>
+      <li *ngIf="role === 'CLIENT'" class="nav-item">
+        <a class="nav-link" routerLink="cancelled-workout" routerLinkActive="active">
+          <i class="bi bi-list-ul"></i> Cancelled Workouts
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

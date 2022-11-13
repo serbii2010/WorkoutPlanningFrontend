@@ -4,6 +4,7 @@ import {HomeComponent} from "../public/component/home/home.component";
 import {AdminComponent} from "./admin/admin.component";
 import {TrainerComponent} from "./trainer/trainer.component";
 import {ClientComponent} from "./client/client.component";
+import {PersonalAccountComponent} from "./personal-account/personal-account.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'client',
     component: ClientComponent,
     loadChildren: () => import('./client/client.module').then(m=>m.ClientModule)
+  },
+  {
+    path: 'account',
+    component: PersonalAccountComponent,
+    loadChildren: () => import('./personal-account/personal-account.module').then(m=>m.PersonalAccountModule)
   },
   {
     path: 'home',
