@@ -5,6 +5,7 @@ import {AccountInfo} from "../account/account-info";
 import {HttpClient} from "@angular/common/http";
 import {EditAccountRequest} from "../account/edit-account-request";
 import {BaseService} from "./base.service";
+import {AuthStorageService} from "../auth/auth-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ import {BaseService} from "./base.service";
 export class AccountService {
   private baseAccountUrl = this.baseService.baseUrl+'accounts/'
 
-  constructor(private baseService: BaseService, private http: HttpClient) { }
+  constructor(private baseService: BaseService,
+              private authStorageService: AuthStorageService,
+              private http: HttpClient) { }
 
   getAccounts(typeUser: Role): Observable<AccountInfo[]> {
     switch (typeUser) {
@@ -39,5 +42,9 @@ export class AccountService {
 
   editAccount(dataRequest: EditAccountRequest, username: string | null): Observable<AccountInfo> {
     return this.http.put<AccountInfo>(this.baseAccountUrl+username, dataRequest, this.baseService.httpOptions)
+  }
+
+  getMyInfo(): Observable<AccountInfo> {
+    return this.http.get<AccountInfo>(this.baseAccountUrl+this.authStorageService.getUserId(), this.baseService.httpOptions)
   }
 }

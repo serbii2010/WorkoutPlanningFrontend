@@ -1,8 +1,8 @@
-export enum StatusRecord {
+export enum RecordStatus {
   UNDEFINED = "UNDEFINED",
   ACTIVE = "ACTIVE",
   QUEUED = "QUEUED",
   CANCELLED = "CANCELLED",
   SKIPPED = "SKIPPED",
-  ACCEPTED = "ACCEPTED",
+  VISITED = "VISITED",
 }

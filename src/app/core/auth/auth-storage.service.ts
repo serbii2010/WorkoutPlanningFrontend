@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthService} from "../service/auth.service";
 
+const USER_ID = "UserId"
 const USERNAME_KEY = 'AuthUsername';
 const ROLE_KEY = 'AuthAuthorities';
 
@@ -14,6 +15,15 @@ export class AuthStorageService {
   signOut() {
     this.authService.logout()
     sessionStorage.clear();
+  }
+
+  public saveUserId(userId: string) {
+    sessionStorage.removeItem(USER_ID);
+    sessionStorage.setItem(USER_ID, userId);
+  }
+
+  public getUserId() {
+    return sessionStorage.getItem(USER_ID)
   }
 
   public saveUsername(username: string) {

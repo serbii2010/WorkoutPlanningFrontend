@@ -4,7 +4,7 @@ import {WorkoutService} from "../../../../../core/service/workout.service";
 import {RecordService} from "../../../../../core/service/record.service";
 import {InsertRecordInfo} from "../../../../../core/record/insert-record-info";
 import {AuthStorageService} from "../../../../../core/auth/auth-storage.service";
-import {StatusRecord} from "../../../../../core/record/status-record";
+import {RecordStatus} from "../../../../../core/record/record-status";
 
 @Component({
   selector: 'app-workouts',
@@ -21,7 +21,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
     this.getWorkouts();
   }
 
-  statusRecord = StatusRecord;
+  recordStatus = RecordStatus;
 
   singUp(id: number) {
     if (this.authService.getUsername() == null) {
@@ -65,7 +65,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
       return
     }
     let request = new InsertRecordInfo(this.authService.getUsername()!, id)
-    this.recordService.setStatus(request, StatusRecord.CANCELLED).subscribe({
+    this.recordService.setStatus(request, RecordStatus.CANCELLED).subscribe({
       next: value => {
         console.log(value)
         this.getWorkouts()

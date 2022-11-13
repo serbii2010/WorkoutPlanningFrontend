@@ -1,4 +1,4 @@
-import {StatusRecord} from "../record/status-record";
+import {RecordStatus} from "../record/record-status";
 
 export class WorkoutInfo {
   id: number;
@@ -9,7 +9,7 @@ export class WorkoutInfo {
   typeWorkout: string;
   totalSeats: number;
   availableSeats: number;
-  statusRecord: string;
+  recordStatus: string;
 
   constructor(id: number,
               date: string,
@@ -19,7 +19,7 @@ export class WorkoutInfo {
               typeWorkout: string,
               totalSeats: number,
               availableSeats: number,
-              statusRecord: string = StatusRecord.UNDEFINED) {
+              recordStatus: string = RecordStatus.UNDEFINED) {
     this.id = id;
     this.date = date;
     this.timeStart = timeStart;
@@ -28,7 +28,7 @@ export class WorkoutInfo {
     this.typeWorkout = typeWorkout;
     this.totalSeats = totalSeats;
     this.availableSeats = availableSeats;
-    this.statusRecord = statusRecord;
+    this.recordStatus = recordStatus;
   }
 
 }
