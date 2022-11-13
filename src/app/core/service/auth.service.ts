@@ -18,6 +18,8 @@ export class AuthService {
   private signupClientUrl = this.baseService.baseUrl+'client-accounts';
   private signupTrainerUrl = this.baseService.baseUrl+'trainer-accounts';
   private getRoleUrl = this.baseService.baseUrl+'auth/role';
+  private restoreAccessUrl = this.baseService.baseUrl+'auth/reset-password';
+  private sendCodeUrl = this.baseService.baseUrl+'auth/code';
   public loginWithGoogleUrl = 'http://localhost:8000/oauth2/authorization/google?redirect_uri=http://localhost:4200/auth/login';
 
   constructor(private baseService: BaseService,
@@ -45,5 +47,13 @@ export class AuthService {
 
   getCurrentRole(): Observable<RoleInfo> {
     return this.http.get<RoleInfo>(this.getRoleUrl, this.baseService.httpOptions)
+  }
+
+  restoreAccess(value: string): Observable<any> {
+    return this.http.post(this.restoreAccessUrl, {email: value}, this.baseService.httpOptions)
+  }
+
+  sendCode(code: string, password: string): Observable<any> {
+    return this.http.post(this.sendCodeUrl, {code: code, password: password}, this.baseService.httpOptions)
   }
 }

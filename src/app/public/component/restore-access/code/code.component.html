@@ -1,0 +1,51 @@
+<h4>Restore Access to Account</h4>
+<div class="row col-sm-6" style="max-width:350px;">
+  <p>Enter code from email</p>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label>Code:</label>
+      <input type="text"
+             class="form-control"
+             formControlName="code"
+             placeholder="Code"
+             required
+      />
+      <div *ngIf="code.invalid && code.touched" class="alert alert-danger">
+        <div *ngIf="code.errors?.required">Code is required</div>
+        <div *ngIf="code.errors?.minlength">Code must be at least 4 characters</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label>New Password:</label>
+      <input type="password"
+             class="form-control"
+             formControlName="password"
+             placeholder="Password"
+             required
+      />
+      <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+        <div *ngIf="password.errors?.required">password is required</div>
+        <div *ngIf="password.errors?.minlength">password must be at least 6 characters</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label>Confirm Password:</label>
+      <input type="password"
+             class="form-control"
+             formControlName="passwordConfirm"
+             placeholder="Password"
+             required
+      />
+      <div *ngIf="passwordConfirm.invalid && passwordConfirm.touched" class="alert alert-danger">
+        <div *ngIf="passwordConfirm.errors?.required">password is required</div>
+        <div *ngIf="passwordConfirm.errors?.minlength">password must be at least 6 characters</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-success" type="submit">Accept code</button>
+      <div *ngIf="isFailed" class="alert alert-danger mt-3">
+        <p>Send code failed: {{ errorMessage$ | async }}</p>
+      </div>
+    </div>
+  </form>
+</div>

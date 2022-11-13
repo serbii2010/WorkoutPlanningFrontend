@@ -28,8 +28,9 @@
     </div>
     <div class="mb-3">
       <button class="btn btn-primary" type="submit">Sign In</button>
-      <div *ngIf="isLoginFailed" class="alert alert-danger">
-        Login failed: {{ errorMessage$ | async }}
+      <div *ngIf="isLoginFailed" class="alert alert-danger mt-3">
+        <p>Login failed: {{ errorMessage$ | async }}</p>
+        <p>Forgot your password? <a routerLink="/auth/restore-access">Restore access</a></p>
       </div>
     </div>
   </form>
