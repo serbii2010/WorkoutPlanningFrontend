@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
   submit() {
     if (!this.formLogin.valid) {
       this.setErrorMessage('Form not valid')
-      console.error('Form not valid')
       return
     }
     this.loginInfo = new AuthLoginInfo(
@@ -91,7 +90,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe({
       next: (data) => {
-        console.log(data)
         this.auth(data)
       },
       error: (error) => {
@@ -109,7 +107,6 @@ export class LoginComponent implements OnInit {
     this.isLoginFailed = false;
     this.isLoggedIn = true;
     this.role = this.authStorage.getRole();
-    console.log('navigate')
     this.router.navigate(['']);
   }
 }

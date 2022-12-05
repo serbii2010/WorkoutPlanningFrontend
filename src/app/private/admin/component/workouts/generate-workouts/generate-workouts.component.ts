@@ -86,7 +86,6 @@ export class GenerateWorkoutsComponent implements OnInit {
   generate(): void {
     if (!this.form.valid) {
       this.setErrorMessage(['Form not valid'])
-      console.error('Form not valid')
       return
     }
     this.generateWorkoutInfo = new GenerateWorkoutInfo(

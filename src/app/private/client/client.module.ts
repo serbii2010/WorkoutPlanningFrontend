@@ -6,12 +6,14 @@ import {ClientRoutingModule} from "./client-routing.module";
 import {MatTableModule} from "@angular/material/table";
 import {ReactiveFormsModule} from "@angular/forms";
 import {WorkoutClientTableComponent} from "./component/workouts/workout-table/workout-client-table.component";
+import { SubscriptionTableComponent } from './component/subscription/subscription-table/subscription-table.component';
 
 @NgModule({
   declarations: [
     ClientComponent,
     WorkoutClientTableComponent,
-    NavClientComponent
+    NavClientComponent,
+    SubscriptionTableComponent
   ],
   imports: [
     CommonModule,

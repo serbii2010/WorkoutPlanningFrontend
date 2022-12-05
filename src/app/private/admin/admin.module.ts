@@ -16,8 +16,10 @@ import {EditWorkoutComponent} from './component/workouts/edit-workout/edit-worko
 import {WorkoutAdminTableComponent} from "./component/workouts/workout-table/workout-table.component";
 import {RulesComponent} from './component/rules/rules.component';
 import {AdminComponent} from "./admin.component";
-import {EditTrainerComponent} from './component/trainers/edit-trainer/edit-trainer.component';
+import {EditTrainerAccountComponent} from './component/trainers/edit-trainer/edit-trainer-account.component';
 import {DetailWorkoutComponent} from "./component/workouts/detail-workout/detail-workout.component";
+import { SubscriptionTableComponent } from './component/subscription/subscription-table/subscription-table.component';
+import { SubscriptionCreateComponent } from './component/subscription/subscription-create/subscription-create.component';
 
 
 @NgModule({
@@ -26,14 +28,16 @@ import {DetailWorkoutComponent} from "./component/workouts/detail-workout/detail
     TrainerTableComponent,
     RegisterTrainerComponent,
     NavAdminComponent,
-    EditTrainerComponent,
+    EditTrainerAccountComponent,
     WorkoutAdminTableComponent,
     GenerateWorkoutsComponent,
     CheckboxGroupComponent,
     EditWorkoutComponent,
     DetailWorkoutComponent,
     RulesComponent,
-    EditTrainerComponent
+    EditTrainerAccountComponent,
+    SubscriptionTableComponent,
+    SubscriptionCreateComponent,
   ],
   imports: [
     CommonModule,

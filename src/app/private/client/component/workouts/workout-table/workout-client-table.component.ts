@@ -17,7 +17,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
               public authService: AuthStorageService,
               @Inject(LOCALE_ID) public override locale: string) {
     super(workoutService, locale);
-    this.displayedColumns = ['date', 'timeStart', 'trainer', 'duration', 'typeWorkout', 'availableSeats', 'actions'];
+    this.displayedColumns = ['date', 'timeStart', 'trainer', 'duration', 'typeWorkout', 'availableSeats', 'status', 'actions'];
     this.getWorkouts();
   }
 
@@ -30,8 +30,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
     }
     let request = new InsertRecordInfo(this.authService.getUsername()!, id)
     this.recordService.insert(request).subscribe({
-      next: value => {
-        console.log(value)
+      next: () => {
         this.getWorkouts()
       },
       error: error => {
@@ -48,8 +47,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
     }
     let request = new InsertRecordInfo(this.authService.getUsername()!, id)
     this.recordService.queue(request).subscribe({
-      next: value => {
-        console.log(value)
+      next: () => {
         this.getWorkouts()
       },
       error: error => {
@@ -66,8 +64,7 @@ export class WorkoutClientTableComponent extends WorkoutTableComponent implement
     }
     let request = new InsertRecordInfo(this.authService.getUsername()!, id)
     this.recordService.setStatus(request, RecordStatus.CANCELLED).subscribe({
-      next: value => {
-        console.log(value)
+      next: () => {
         this.getWorkouts()
       },
       error: error => {

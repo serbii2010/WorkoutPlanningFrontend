@@ -76,7 +76,6 @@ export abstract class RegisterComponent {
   register(): void {
     if (!this.formRegister.valid) {
       this.setErrorMessage('Form not valid')
-      console.error('Form not valid')
       return
     }
 
