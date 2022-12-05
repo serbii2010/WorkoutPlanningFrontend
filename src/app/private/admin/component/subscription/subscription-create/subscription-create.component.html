@@ -1,0 +1,85 @@
+<div class="row col-sm-6" xmlns="http://www.w3.org/1999/html">
+  <h2>Create New Subscription</h2>
+  <form [formGroup]="formBase">
+    <div class="mb-3">
+      <label class="form-label">Type:</label>
+      <select class="form-select"
+              name="type"
+              formControlName="type">
+        <option *ngFor="let typeEl of types" value="{{typeEl.name}}">{{typeEl.value}}</option>
+      </select>
+    </div>
+    <div *ngIf="type.invalid && type.touched" class="alert alert-danger">
+      <div *ngIf="type.errors?.required">Type is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Username:</label>
+      <select class="form-select"
+              name="username"
+              formControlName="username"
+              required>
+        <option *ngFor="let client of clients" value="{{client?.username}}">{{client?.username}}</option>
+      </select>
+    </div>
+    <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
+      <div *ngIf="username.errors?.required">Date end is required</div>
+    </div>
+  </form>
+
+  <form *ngIf="type.value=='LIMITED'" [formGroup]="formLimited" (ngSubmit)="create()">
+    <div class="mb-3">
+      <label class="form-label">Total:</label>
+      <select class="form-select"
+              name="total"
+              formControlName="total"
+              required>
+        <option *ngFor="let workout of workoutsCount" value="{{workout}}">{{workout}}</option>
+      </select>
+    </div>
+    <div *ngIf="total.invalid && total.touched" class="alert alert-danger">
+      <div *ngIf="total.errors?.required">Total is required</div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-success" type="submit">Create</button>
+    </div>
+  </form>
+
+  <form *ngIf="type.value=='UNLIMITED'" [formGroup]="formUnlimited" (ngSubmit)="create()">
+    <div class="mb-3">
+      <label class="form-label">From Date:</label>
+      <input type="date"
+             class="form-control"
+             name="dateStart"
+             formControlName="dateStart"
+             required
+      />
+    </div>
+    <div *ngIf="dateStart.invalid && dateStart.touched" class="alert alert-danger">
+      <div *ngIf="dateStart.errors?.required">Date Start Subscribe is required</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Count Month:</label>
+      <select class="form-select"
+              name="countMonth"
+              formControlName="countMonth"
+              required>
+        <option *ngFor="let mon of monthsCount" value="{{mon}}">{{mon}}</option>
+      </select>
+    </div>
+    <div *ngIf="countMonth.invalid && countMonth.touched" class="alert alert-danger">
+      <div *ngIf="countMonth.errors?.required">Count Month is required</div>
+    </div>
+
+    <div class="mb-3">
+      <button class="btn btn-success" type="submit">Create</button>
+    </div>
+  </form>
+  <div class="mb-3">
+    <div *ngIf="isFailed" class="alert alert-danger">
+      Generate workout failed:
+      <ul>
+        <li *ngFor="let error of errorMessage$|async">{{error}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

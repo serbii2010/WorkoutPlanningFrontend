@@ -82,7 +82,6 @@ export class EditWorkoutComponent implements OnInit {
   }
 
   initForm() {
-    console.log(this.workout)
     this.form.controls.date.setValue(this.workout !== undefined ? this.workout.date : '')
     this.form.controls.timeStart.setValue(this.workout !== undefined ? this.workout.timeStart : null)
     this.form.controls.trainer.setValue(this.workout !== undefined ? this.workout.trainer : null)
@@ -95,7 +94,6 @@ export class EditWorkoutComponent implements OnInit {
   edit() {
     if (!this.form.valid) {
       this.setErrorMessage(['Form not valid'])
-      console.error('Form not valid')
       return
     }
     this.workout = new WorkoutInfo(
@@ -113,7 +111,6 @@ export class EditWorkoutComponent implements OnInit {
         this.router.navigate(['admin', 'workouts'])
       },
       error: (error: any) => {
-        console.log(error)
         let errorData: string[] = []
         for (let err of error.error.errors) {
           errorData.push('field ' + err.field + ' - ' + err.message)

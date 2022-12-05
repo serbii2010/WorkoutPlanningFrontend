@@ -57,7 +57,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions</th>
     <td mat-cell *matCellDef="let element">
-      <div *ngIf="currentTime < timeEndWorkout">
+      <div *ngIf="currentTime < timeEndWorkout && (element.status == status.ACTIVE || element.status == status.QUEUED)">
         <button (click)="deleteClient(element.username)" class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Cancel">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash"

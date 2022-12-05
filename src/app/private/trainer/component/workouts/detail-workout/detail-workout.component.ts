@@ -26,7 +26,6 @@ export class DetailWorkoutComponent implements OnInit {
       this.workoutId = urlParam['id']
       this.findWorkout()
       this.findRecords()
-      console.log(this.workout)
     })
   }
 

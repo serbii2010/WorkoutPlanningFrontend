@@ -5,7 +5,7 @@ import {EditAccountComponent} from "../../../../component/edit-account/edit-acco
   selector: 'app-edit-trainer-account',
   templateUrl: '../../../../component/edit-account/edit-account.component.html',
 })
-export class EditTrainerComponent extends EditAccountComponent implements OnInit {
+export class EditTrainerAccountComponent extends EditAccountComponent implements OnInit {
 
   constructor() {
     super();

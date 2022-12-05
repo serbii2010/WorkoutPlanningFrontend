@@ -62,7 +62,6 @@ export class EditAccountComponent {
   edit() {
     if (!this.form.valid) {
       this.setErrorMessage('Form not valid')
-      console.error('Form not valid')
       return
     }
 

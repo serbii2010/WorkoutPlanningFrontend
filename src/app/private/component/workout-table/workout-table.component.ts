@@ -53,8 +53,7 @@ export class WorkoutTableComponent implements OnInit {
 
   public delete(id: number) {
     this.workoutService.delete(id).subscribe({
-      next: value => {
-        console.log(value)
+      next: () => {
         this.getWorkouts()
       }
     })

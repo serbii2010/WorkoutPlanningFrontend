@@ -4,6 +4,7 @@ import {EditMyAccountComponent} from "./component/edit-account/edit-my-account.c
 import {VisitedWorkoutsComponent} from "./component/workouts/visited-workouts/visited-workouts.component";
 import {SkippedWorkoutsComponent} from "./component/workouts/skipped-workouts/skipped-workouts.component";
 import {CancelledWorkoutsComponent} from "./component/workouts/cancelled-workouts/cancelled-workouts.component";
+import {ActiveWorkoutsComponent} from "./component/workouts/active-workouts/active-workouts.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'edit',
     component: EditMyAccountComponent,
+  },
+  {
+    path: 'active-workout',
+    component: ActiveWorkoutsComponent
   },
   {
     path: 'visited-workout',

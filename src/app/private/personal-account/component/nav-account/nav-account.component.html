@@ -6,6 +6,11 @@
           <i class="bi bi-person-bounding-box"></i> Personal Account</a>
       </li>
       <li *ngIf="role === 'CLIENT'" class="nav-item">
+        <a class="nav-link" routerLink="active-workout" routerLinkActive="active">
+          <i class="bi bi-list-check"></i> Active Records
+        </a>
+      </li>
+      <li *ngIf="role === 'CLIENT'" class="nav-item">
         <a class="nav-link" routerLink="visited-workout" routerLinkActive="active">
           <i class="bi bi-list-check"></i> Visited Workouts
         </a>
